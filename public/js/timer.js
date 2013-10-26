@@ -2,7 +2,10 @@ $(function(){
 	var PENQ={
 	  countdown: function(opt){
 	    var me=this;
-	    if(!opt){opt={};} if(!opt.id){opt.id='area';} if(!opt.already){opt.already='###';}
+	    if(!opt){opt={};} if(!opt.id){opt.id='area';} 
+	    if(!opt.already){
+	    	location.href="/chat";
+	    }
 	    if(!opt.year){opt.year=2013;}if(!opt.month){opt.month=4;} if(!opt.day){opt.day=1;}
 	    if(!opt.hour){opt.hour=0;}
 	    var dt=new Date(opt.year, opt.month-1, opt.day, opt.hour, 0, 0); var dn=new Date();
