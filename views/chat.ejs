@@ -8,16 +8,20 @@
     <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css" media="screen, projection" />
     <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-responsive.css" media="screen, projection" />
-    <style>
-        margin: 0;
+    <style type="text/css">
+    <!--
+    * {font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif; margin:0; padding:0;}
+    center {width:600px; margin:0 auto; background-color: #ececec; width:600px}
+    h1, h2 {margin : 0 auto; text-align:center;}
+    div.title {color: #FFFFFF; padding:15px; background-color: #acd30b;}
+    -->
     </style>
   </head>
   <body>
-    <div style="color: #FFFFFF; height: 60px; background-color: #acd30b" >
-    <center><font size="6">弁護士の休み時間</font></center>
-    <center>休憩時間残り：<span id="count-down-timer"></span></center>
+    <div style="color: #FFFFFF; background-color: #acd30b" >
+    <h1><font size="6">弁護士の休み時間</font></h1>
+    <h2>休憩時間残り：<span id="count-down-timer"></span></h2>
     </div>
-    <br>
 
     <center>
     <div style="width: 600px; background-color: #cccccc">
@@ -27,11 +31,10 @@
           <input type="text" name="name" id="name" value="名無し"/>
           <!-- <input type="submit"/> -->
         </form>
-
         メッセージ
         <form onsubmit="return send();">
-          <textarea name="message" id="message" rows="4" cols="40"/></textarea>
-          <input type="submit"/>
+          <textarea name="message" id="message" rows="4" cols="40"/></textarea><br>
+          <input type="submit" value="　コメントする　"/>
         </form>
         <br>
     </div>
