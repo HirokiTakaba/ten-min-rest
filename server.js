@@ -14,6 +14,8 @@ console.log('Server running at http://127.0.0.1:3000/');
 var counter = 1;
 var socketio = require('socket.io');
 var io = socketio.listen(app);
+io.set("transports", ["xhr-polling"]);
+io.set("polling duration", 10);
 io.sockets.on('connection', function(socket_connection) {
     console.log('connected');
     console.log(counter);
