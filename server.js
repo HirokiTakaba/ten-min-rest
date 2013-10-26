@@ -11,14 +11,19 @@ app.configure(function() {
 app.listen(3000);
 console.log('Server running at http://127.0.0.1:3000/');
 
-var io = require('socket.io');
-var socket = io.listen(app);
-socket.on('connection', function(client) {
-    client.on('message', function(msg) {
-        client.send(msg);
-        client.broadcast(msg);
+var counter = 1;
+var socketio = require('socket.io');
+var io = socketio.listen(app);
+io.sockets.on('connection', function(socket_connection) {
+    console.log('connected');
+    console.log(counter);
+    counter++;
+    socket_connection.on('message', function(msg) {
+        console.log("メッセージ受信");
+        //socket_connection.send(msg);
+        io.sockets.emit('message', msg);
     });
-})
+});
 
 app.get('/', function(req, res) {
     res.render('clock.ejs', {
