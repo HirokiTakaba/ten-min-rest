@@ -9,7 +9,11 @@ $(function(){
 	  	} else  {
 	  		url = "/chat";
 	  	}
-	  	me.playsound({src: "/sound/clock/class-finish.mp3", wait_sec: 15, redirect_url: url });
+	  	if (opt.sound_url != "") {
+	  		me.playsound({src: opt.sound_url, wait_sec: 15, redirect_url: url });
+	  	} else {
+	  		location.href = url;
+	  	}
 	  },
 	  playsound: function(opt) {
 	  	html = '<div style="display:none;"><audio src="' + opt.src + '" preload="auto" /></div><script type="text/javascript" src="/js/audio.min.js"></script><script>audiojs.events.ready(function() { var as = audiojs.createAll(); as[0].play(); }); </script>'
@@ -34,7 +38,7 @@ $(function(){
 	    if(!opt.hour){opt.hour=0;}
 	    var dt=new Date(opt.year, opt.month-1, opt.day, opt.hour, 50, 0); var dn=new Date();
 	    var d=dt-dn;
-	    if(d<0){$('#'+opt.id).html(opt.already); me.goToChat(); return; }
+	    if(d<0){$('#'+opt.id).html(opt.already); me.goToChat({sound_url: "/sound/clock/class-finish.mp3"}); return; }
 	    var dd=Math.floor(d/(1000*60*60*24));
 	    var hh=Math.floor((d-dd*1000*60*60*24)/(1000*60*60));
 	    var mm=Math.floor((d-(dd*1000*60*60*24)-(hh*1000*60*60))/(1000*60));
@@ -89,7 +93,7 @@ $(function(){
 	    } else if (hour == 11) {
 	    	num = 3;
 	    } else if (hour == 12) {
-	    	me.goToChat();
+	    	me.goToChat({sound_url: ""});
 	    } else if (hour == 13) {
 	    	num = 4;
 	    } else if (hour == 14) {
@@ -98,11 +102,10 @@ $(function(){
 	    	num = 6;
 	    } else if (hour == 16) {
 	    	num = 7;
-	    } else if (hour == 17) {
-	    	num = 8;
 	    } else {
 	    	$('#'+opt.id).html(opt.already);
-	    	me.goToChat();
+	    	me.goToChat({sound_url: ""});
+	    	return;
 	    }
     	text = opt.format.replace('#st', num);
     	$('#'+opt.id).html(text);
