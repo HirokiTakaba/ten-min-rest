@@ -8,13 +8,6 @@ app.configure(function() {
     app.use(app.router);
     app.use(express.static(__dirname + '/public'));
 });
-
-app.get('/', function(req, res) {
-    res.render('index.ejs', { 
-        layout: false,
-        locals: { name: req.param('name') || 'anonymous' }
-    });
-});
 app.listen(3000);
 console.log('Server running at http://127.0.0.1:3000/');
 
@@ -26,3 +19,20 @@ socket.on('connection', function(client) {
         client.broadcast(msg);
     });
 })
+
+app.get('/', function(req, res) {
+    res.render('clock.ejs', {
+        layout: false,
+    });
+});
+app.get('/clock', function(req, res) {
+    res.render('clock.ejs', {
+        layout: false,
+    });
+});
+app.get('/chat', function(req, res) {
+    res.render('chat.ejs', {
+        layout: false,
+        locals: { name: req.param('name') || 'anonymous' }
+    });
+});
