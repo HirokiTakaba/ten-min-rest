@@ -12,10 +12,17 @@
   *zoom: 1;
 }
 
-p.white1 { color: #fff; }
+p.white1 {
+	display:table-cell;
+	color: #fff;
+	font-size:18px;
+	vertical-align: middle;
+}
 
 .tableblack{background-color:#333333;}
-
+.tablewhite{
+	background-color:#FFFFFF;
+	}
 
 .clearfix:before,
 .clearfix:after {
