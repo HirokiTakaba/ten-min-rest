@@ -24,20 +24,22 @@ $(function(){
 	  close: {}
 	}
 
-	var TIMER={
-	  countdown: function(opt){
-
-	  },
-	}
 	$(function(){
-		finish = 
+		//時刻データを取得
+		var currentTime= new Date();
+
+		//時・分・秒を取得
+		var year = currentTime.getFullYear();
+		var month = currentTime.getMonth()+1;
+		var day = currentTime.getDate();
+		var hour = currentTime.getHours()+1;
 
 		PENQ.countdown({
 			id: 'count-down-timer', // 表示場所
-			year: 2016, month: 4, day: 1, hour: 10, // ターゲット日
-			format: '#d日#h時間#m分#s秒',
+			year: year, month: month, day: day, hour: hour, // ターゲット日
+			format: 'あと#m分#s秒',
 			number: '#',
-			already: '<span>カウントダウンは終了しました。</span>' // ターゲットを経過した時の表示
+			already: '<span>今日の授業は終了しました。明日は9:00-スタートです。</span>' // ターゲットを経過した時の表示
 		});
 	});
 });
