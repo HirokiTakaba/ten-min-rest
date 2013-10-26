@@ -1,13 +1,28 @@
 <html>
   <head>
     <title>simple-chat</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css" media="screen, projection" />
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-responsive.min.css" media="screen, projection" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="/js/client.js"></script>
     <script type="text/javascript" src="/js/timer.js"></script>
   </head>
-  <body>
-    <h1>ここからタイマーページ</h1>    
-    <div id="count-down-timer"></div>
+  <body style="background-color: #9ad63c; color: white; font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;">
+    <h1>
+      <div class="text-center" style="text-align: center; margin-top: 200px;">
+        <img src="/img/jugyou_clock.png" style="width: 18px; height: 18px;"/>
+        <span id="schedule-title" style="font-size: 24px;">xx時間目</span>
+      </div>
+    </h1>  
+    <div id="count-down-timer" class="text-center" style="text-align: center; font-size: 96px; font-weight: bold; margin-bottom: 20px;"></div>
+    <div class="text-center" style="text-align: center;">
+      <span id="countdown-message" style="position:absolute; width:80%; left:10%; margin-top: 21px; color:rgb(154, 214, 60); font-size: 20px; font-weight: bold;">頑張れ</span>
+      <img src="/img/jugyou_fukidashi.png"/>
+    </div>  
+    <div class="text-center" style="text-align: center;">
+      <img src="/img/jugyou_illust.png"/>
+    </div>    
   </body>
 </html>
