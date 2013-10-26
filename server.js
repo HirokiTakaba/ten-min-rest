@@ -28,7 +28,7 @@ io.sockets.on('connection', function(socket_connection) {
 });
 
 app.get('/', function(req, res) {
-    res.render('clock.ejs', {
+    res.render('index.ejs', {
         layout: false,
     });
 });

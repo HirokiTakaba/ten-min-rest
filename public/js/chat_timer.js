@@ -2,7 +2,7 @@ $(function(){
     var PENQ={
         goToClock: function(opt){
             //return;
-            location.href="/clock";
+            //location.href="/clock";
         },
         countdown: function(opt){
             var me=this;

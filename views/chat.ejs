@@ -5,21 +5,37 @@
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="/js/client.js"></script>
     <script type="text/javascript" src="/js/chat_timer.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css" media="screen, projection" />
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-responsive.css" media="screen, projection" />
+    <style>
+        margin: 0;
+    </style>
   </head>
   <body>
-    休憩時間残り：<div id="count-down-timer"></div><br>
+    <div style="color: #FFFFFF; height: 60px; background-color: #acd30b" >
+    <center><font size="6">弁護士の休み時間</font></center>
+    <center>休憩時間残り：<span id="count-down-timer"></span></center>
+    </div>
+    <br>
 
-    名前<br>
-    <form onsubmit="return rename();">
-      <input type="text" name="name" id="name" value="名無し"/>
-      <!-- <input type="submit"/> -->
-    </form>
+    <center>
+    <div style="width: 600px; background-color: #cccccc">
+        <br>
+        名前<br>
+        <form onsubmit="return rename();">
+          <input type="text" name="name" id="name" value="名無し"/>
+          <!-- <input type="submit"/> -->
+        </form>
 
-    メッセージ
-    <form onsubmit="return send();">
-      <input type="text" name="message" id="message"/>
-      <input type="submit"/>
-    </form>
-    <div></div>
+        メッセージ
+        <form onsubmit="return send();">
+          <textarea name="message" id="message" rows="4" cols="40"/></textarea>
+          <input type="submit"/>
+        </form>
+        <br>
+    </div>
+    </center>
+
   </body>
 </html>
