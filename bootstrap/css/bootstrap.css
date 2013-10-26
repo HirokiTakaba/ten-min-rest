@@ -12,6 +12,11 @@
   *zoom: 1;
 }
 
+p.white1 { color: #fff; }
+
+.tableblack{background-color:#333333;}
+
+
 .clearfix:before,
 .clearfix:after {
   display: table;
