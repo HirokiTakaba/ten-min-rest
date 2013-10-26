@@ -9,10 +9,14 @@ $(function(){
 	  	} else  {
 	  		url = "/chat";
 	  	}
-	  	// For debug
-	  	//console.log(url);
-		//return;
-		location.href = url;
+	  	me.playsound({src: "/sound/clock/class-finish.mp3", wait_sec: 15, redirect_url: url });
+	  },
+	  playsound: function(opt) {
+	  	html = '<div style="display:none;"><audio src="' + opt.src + '" preload="auto" /></div><script type="text/javascript" src="/js/audio.min.js"></script><script>audiojs.events.ready(function() { var as = audiojs.createAll(); as[0].play(); }); </script>'
+	  	$("#play-sound").append(html);
+	  	if (opt.redirect_url) {
+	  		setTimeout(function(){ location.href = opt.redirect_url; }, opt.wait_sec*1000);
+	  	}
 	  },
 	  getUrlParams: function(){
 		  var vars = new Object, params;
@@ -30,7 +34,7 @@ $(function(){
 	    if(!opt.hour){opt.hour=0;}
 	    var dt=new Date(opt.year, opt.month-1, opt.day, opt.hour, 50, 0); var dn=new Date();
 	    var d=dt-dn;
-	    if(d<0){$('#'+opt.id).html(opt.already); me.goToChat(); }
+	    if(d<0){$('#'+opt.id).html(opt.already); me.goToChat(); return; }
 	    var dd=Math.floor(d/(1000*60*60*24));
 	    var hh=Math.floor((d-dd*1000*60*60*24)/(1000*60*60));
 	    var mm=Math.floor((d-(dd*1000*60*60*24)-(hh*1000*60*60))/(1000*60));
@@ -58,10 +62,19 @@ $(function(){
 
 	    var me=this;
 	    var x=opt.format.replace('#d', day);
-	    x=x.replace('#h', hour);
-	    x=x.replace('#m', minute);
-	    x=x.replace('#s', second);
+	    x=x.replace('#h', ("0" + hour).slice(-2));
+	    x=x.replace('#m', ("0" + minute).slice(-2));
+	    x=x.replace('#s', ("0" + second).slice(-2));
 	    $('#'+opt.id).html(x);
+
+	    if (minute == 0) {
+			if ($.cookie('play_startsound') != 'played') {
+				me.playsound({src: "/sound/clock/class-start1.mp3", wait_sec: 12 });
+			}			
+			$.cookie('play_startsound', 'played');
+	    } else {
+	    	$.cookie('play_startsound', 'wait');
+	    }
 	    setTimeout(function(){me.showCurrent(opt);}, 1000);
 	  },
 	  scheduleTimer: function(opt){
@@ -83,8 +96,10 @@ $(function(){
 	    	num = 5;
 	    } else if (hour == 15) {
 	    	num = 6;
-	    }  else if (hour == 16) {
+	    } else if (hour == 16) {
 	    	num = 7;
+	    } else if (hour == 17) {
+	    	num = 8;
 	    } else {
 	    	$('#'+opt.id).html(opt.already);
 	    	me.goToChat();
@@ -110,7 +125,7 @@ $(function(){
 		PENQ.showCurrent({
 			id: 'count-down-timer', // 表示場所
 			year: year, month: month, day: day, hour: hour, minute: minute, second: second, // ターゲット日
-			format: '#h:#m',
+			format: '#h:#m:#s',
 			number: '#',
 			already: '<span style="font-size:32px;">今日の授業は終了しました。<br/>明日は9:00-スタートです。</span>' // ターゲットを経過した時の表示
 		});
